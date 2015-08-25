@@ -24,6 +24,8 @@ namespace Sample3
         {
             InitializeComponent();
             BuildDockingLayout();
+            this.WindowState = System.Windows.WindowState.Maximized;
+
 
             Application.Current.Resources["ThemeDictionary"] = new ResourceDictionary();
         }
@@ -50,7 +52,6 @@ namespace Sample3
             var treeviewInfoContent = new DockableContent() { Title = "Explorer Info", Content = new TextBox() { Text = "Explorer Info Text", IsReadOnly = true } };
             treeviewContent.ContainerPane.Items.Add(treeviewInfoContent);
 
-
             //ListView dockable content
             var gridView = new GridView();
             gridView.Columns.Add(new GridViewColumn() { Header = "Date" });
@@ -64,31 +65,15 @@ namespace Sample3
             listView.Items.Add(DateTime.Now.AddMonths(15));
             listView.Items.Add(DateTime.Now.AddHours(354));
 
-            var listViewContent = new DockableContent() { Title = "Date & Times", Content = listView };
-            listViewContent.ShowAsFloatingWindow(dockManager, true);
+            //Left TreeView dockable content
+            var treeviewContent_left = new DockableContent() { Title = "Explorer Info Left", Content = new TextBox() { Text = "Explorer Info Text", IsReadOnly = true } };
 
-            //TextBox dockable content
-            var textboxSampleContent = new DockableContent() { Title = "Date & Times Info", Content = new TextBox() { Text = "Date & Times Info Text", IsReadOnly = true } };
-            listViewContent.ContainerPane.Items.Add(textboxSampleContent);
+            treeviewContent_left.Show(dockManager, AnchorStyle.Left);
 
+            //Left TreeView dockable content
+            var treeviewContent_right = new DockableContent() { Title = "Explorer Info Right", Content = new TextBox() { Text = "Explorer Info Text", IsReadOnly = true } };
 
-            //DataGrid document
-            //var dataGrid = new DataGrid();
-            //var rnd = new Random();
-            //var data = new List<Tuple<double, double, double, double>>();
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    data.Add(Tuple.Create(rnd.NextDouble(), rnd.NextDouble() * 10.0, rnd.NextDouble() * 100.0, rnd.NextDouble() * 1000.0));
-            //}
-
-            //dataGrid.ItemsSource = data;
-
-            //var dataGridDocument = new DocumentContent() { Title = "Data", IsLocked = true, Content = dataGrid };
-            //dataGridDocument.Show(dockManager);
-
-            ////DataGrid Info Text sample
-            //var dataGridInfoContent = new DockableContent() { Title = "Data Info", Content = new TextBox() { Text = "Data Info Text" } };
-            //dataGridInfoContent.ShowAsDocument(dockManager);
+            treeviewContent_right.Show(dockManager, AnchorStyle.Right);
 
         }
 
