@@ -11,7 +11,8 @@
     <RootNamespace>Sample3</RootNamespace>
     <AssemblyName>Sample3</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -42,8 +43,19 @@
     <Reference Include="AvalonDock.Themes">
       <HintPath>..\AvalonDock.Themes\bin\Release\AvalonDock.Themes.dll</HintPath>
     </Reference>
+    <Reference Include="nVLC.Declarations">
+      <HintPath>..\Program\P001DS003Tvs2012\Declarations\bin\Debug\nVLC.Declarations.dll</HintPath>
+    </Reference>
+    <Reference Include="nVLC.Implementation">
+      <HintPath>..\Program\P001DS003Tvs2012\Implementation\bin\Debug\nVLC.Implementation.dll</HintPath>
+    </Reference>
+    <Reference Include="nVLC.LibVlcWrapper">
+      <HintPath>..\Program\P001DS003Tvs2012\Implementation\bin\Debug\nVLC.LibVlcWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +67,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -92,6 +105,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
