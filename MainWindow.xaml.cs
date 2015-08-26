@@ -40,7 +40,7 @@ namespace Sample3
 
         void BuildDockingLayout()
         {
-            //dockManager.Content = null;
+            dockManager.Content = null;
 
             //TreeView dockable content
             var trv = new System.Windows.Controls.TreeView();
@@ -67,6 +67,9 @@ namespace Sample3
             //TextBox invo dockable content
             var treeviewInfoContent = new DockableContent() { Title = "Explorer Info", Content = new System.Windows.Controls.TextBox() { Text = "Explorer Info Text", IsReadOnly = true } };
             treeviewContent.ContainerPane.Items.Add(treeviewInfoContent);
+
+            VideoPanel videoPanel = new VideoPanel();
+            videoPanel.ShowAsDocument(dockManager);
 
         }
 

@@ -33,12 +33,6 @@
         </Menu>
         
         <!--Docking Manager-->
-        <ad:DockingManager x:Name="dockManager" Grid.Row="1">
-        <ad:ResizingPanel Orientation="Vertical">
-                <ad:DockablePane>
-                    <vp:VideoPanel />
-                </ad:DockablePane>
-            </ad:ResizingPanel>
-        </ad:DockingManager>
+        <ad:DockingManager x:Name="dockManager" Grid.Row="1" />
     </Grid>
 </Window>
