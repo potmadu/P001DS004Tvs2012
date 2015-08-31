@@ -33,9 +33,7 @@ namespace Sample3
             InitializeComponent();
             BuildDockingLayout();
             this.WindowState = System.Windows.WindowState.Maximized;
-            System.Windows.Application.Current.Resources["ThemeDictionary"] = new ResourceDictionary();
-
-            
+            System.Windows.Application.Current.Resources["ThemeDictionary"] = new ResourceDictionary();            
         }
 
         void BuildDockingLayout()
@@ -71,6 +69,9 @@ namespace Sample3
             VideoPanel videoPanel = new VideoPanel();
             videoPanel.ShowAsDocument(dockManager);
 
+            VideoPanelTimeline videoPanelTimeline = new VideoPanelTimeline();
+            videoPanelTimeline.ShowAsDocument(dockManager);
+
         }
 
         private void SetDefaultTheme(object sender, RoutedEventArgs e)
@@ -92,7 +93,6 @@ namespace Sample3
 
         private void ChangeColor(object sender, RoutedEventArgs e)
         {
-
             ThemeFactory.ChangeColors((Color)ColorConverter.ConvertFromString(((System.Windows.Controls.MenuItem)sender).Header.ToString()));
         }
 

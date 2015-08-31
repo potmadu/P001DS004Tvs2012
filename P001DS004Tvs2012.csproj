@@ -43,6 +43,9 @@
     <Reference Include="AvalonDock.Themes">
       <HintPath>..\AvalonDock.Themes\bin\Release\AvalonDock.Themes.dll</HintPath>
     </Reference>
+    <Reference Include="GongSolutions.Wpf.DragDrop">
+      <HintPath>..\CodeProjectTimelineDemo\gong-wpf-dragdrop\GongSolutions.Wpf.DragDrop\bin\Release\GongSolutions.Wpf.DragDrop.dll</HintPath>
+    </Reference>
     <Reference Include="nVLC.Declarations">
       <HintPath>..\Program\P001DS003Tvs2012\Declarations\bin\Debug\nVLC.Declarations.dll</HintPath>
     </Reference>
@@ -64,6 +67,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TimeLineTool">
+      <HintPath>..\CodeProjectTimelineDemo\TimeLineTool\bin\Release\TimeLineTool.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -74,9 +80,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RangeSlider.xaml.cs">
+      <DependentUpon>RangeSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanelTimeline.xaml.cs">
+      <DependentUpon>VideoPanelTimeline.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VideoPanel.xaml.cs">
       <DependentUpon>VideoPanel.xaml</DependentUpon>
     </Compile>
+    <Page Include="RangeSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VideoPanelTimeline.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

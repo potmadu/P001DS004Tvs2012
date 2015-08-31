@@ -26,7 +26,7 @@ namespace Sample3
     /// <summary>
     /// Interaction logic for VideoPanel.xaml
     /// </summary>
-    public partial class VideoPanel : DockableContent
+    public partial class VideoPanelTimeline : DockableContent
     {
 
         IMediaPlayerFactory m_factory;
@@ -34,7 +34,7 @@ namespace Sample3
         IMediaFromFile m_media;
         private volatile bool m_isDrag;
 
-        public VideoPanel()
+        public VideoPanelTimeline()
         {
             InitializeComponent();
 
@@ -46,17 +46,16 @@ namespace Sample3
             m_player = m_factory.CreatePlayer<IVideoPlayer>();
 
             this.DataContext = m_player;
-            
+            /*
             m_player.Events.PlayerPositionChanged += new EventHandler<MediaPlayerPositionChanged>(Events_PlayerPositionChanged);
             m_player.Events.TimeChanged += new EventHandler<MediaPlayerTimeChanged>(Events_TimeChanged);
             m_player.Events.MediaEnded += new EventHandler(Events_MediaEnded);
             m_player.Events.PlayerStopped += new EventHandler(Events_PlayerStopped);
-            
+            */
             m_player.WindowHandle = p.Handle;
             slider2.Value = m_player.Volume;
-
         }
-        
+        /*
         void Events_PlayerStopped(object sender, EventArgs e)
         {
             this.Dispatcher.BeginInvoke(new Action(delegate
@@ -98,8 +97,7 @@ namespace Sample3
                 }
             }));
         }
-        
-
+        */
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -158,7 +156,7 @@ namespace Sample3
                 m_player.Volume = (int)e.NewValue;
             }
         }
-        
+        /*
         private void slider1_DragCompleted(object sender, DragCompletedEventArgs e)
         {
             m_player.Position = (float)slider1.Value;
@@ -169,14 +167,11 @@ namespace Sample3
         {
             m_isDrag = true;
         }
-        
+        */
         private void buttonSnapshot_Click_1(object sender, RoutedEventArgs e)
         {
             m_player.Pause();
             m_player.TakeSnapShot(0, @"c:\temp\");
         }
-
-
-
     }
 }
