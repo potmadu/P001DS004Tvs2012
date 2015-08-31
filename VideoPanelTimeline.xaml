@@ -4,7 +4,7 @@
         xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
         xmlns:tt="clr-namespace:TimeLineTool;assembly=TimeLineTool"
         xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
-        xmlns:local="clr-namespace:UserControlFun"
+        xmlns:local="clr-namespace:Sample3"
        Title="Video Trimming Panel" Height="564" Width="700">
     <Grid>
         <Grid.RowDefinitions>
@@ -19,15 +19,7 @@
         <Button Height="23" HorizontalAlignment="Left" Margin="80,0,0,10" Name="button5" VerticalAlignment="Bottom" Width="45" Click="button5_Click" Grid.Row="1">Mute</Button>
         <my:WindowsFormsHost Margin="80,30,80,150" Name="windowsFormsHost1" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" Grid.RowSpan="2" />
         <Slider Height="22" HorizontalAlignment="Left" Margin="130,0,0,11" Name="slider2" VerticalAlignment="Bottom" Width="100" Grid.Row="1" ValueChanged="slider2_ValueChanged" Maximum="100" RenderTransformOrigin="0.5,1.818" />
-        <local:RangeSlider x:Name="slider" Width="Auto"
-                               Height="22" HorizontalAlignment="Left" Margin="92,35,81,110" 
-                               LowerValue="3"
-                               UpperValue="7"
-                               Minimum="0"
-                               Maximum="10"
-                               VerticalAlignment="Bottom"
-                                Grid.Row="1"
-                               />
+            <local:RangeSlider x:Name="slider" Margin="92,35,81,110" LowerValue="3" UpperValue="7" Minimum="0" Maximum="10" Grid.Row="1" />
         <TextBlock Height="21" Margin="80,0,258,48" Name="textBlock1" VerticalAlignment="Bottom" Grid.Row="1" />
         <Label Height="28" HorizontalAlignment="Right" Margin="0,0,148,11" Name="label1" VerticalAlignment="Bottom" Width="60" Grid.Row="1">00:00:00</Label>
         <Label Height="28" HorizontalAlignment="Right" Margin="0,0,126,11" Name="label2" VerticalAlignment="Bottom" Width="34" Grid.Row="1">/</Label>
