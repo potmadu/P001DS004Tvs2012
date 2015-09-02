@@ -3,23 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
        Title="Video Panel" Height="564" Width="700">
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="356*" />
             <RowDefinition Height="170" />
         </Grid.RowDefinitions>
-        <Button Height="23" HorizontalAlignment="Center" Margin="0,0,300,80" Name="button1" VerticalAlignment="Bottom" Width="50" Click="button1_Click" Grid.Row="1">Open</Button>
-        <Button Height="23" HorizontalAlignment="Center" Margin="300,0,0,80" Name="buttonSnapshot" VerticalAlignment="Bottom" Width="75" Grid.Row="1" Click="buttonSnapshot_Click_1">Snapshot</Button>
-        <Button Height="23" HorizontalAlignment="Center" Margin="150,0,0,80" Name="button2" VerticalAlignment="Bottom" Width="54" Click="button2_Click" Grid.Row="1" RenderTransformOrigin="-0.926,0.522">Pause</Button>
-        <Button Height="23" Margin="0,0,0,80" Name="button3" VerticalAlignment="Bottom" Click="button3_Click" Grid.Row="1" Width="50" RenderTransformOrigin="-0.926,0.522" HorizontalAlignment="Center" >Play</Button>
-        <Button Height="23" Margin="0,0,150,80" Name="button4" VerticalAlignment="Bottom" Click="button4_Click" HorizontalAlignment="Center" Width="50" Grid.Row="1">Stop</Button>
-        <Button Height="23" HorizontalAlignment="Left" Margin="80,0,0,10" Name="button5" VerticalAlignment="Bottom" Width="45" Click="button5_Click" Grid.Row="1">Mute</Button>
-        <Slider Margin="92,35,81,110" Name="slider1" Maximum="1" Minimum="0" Thumb.DragCompleted="slider1_DragCompleted" Thumb.DragStarted="slider1_DragStarted" Grid.Row="1" Value="{Binding Mode=OneWay, Path=Position}" />
-        <my:WindowsFormsHost Margin="80,30,80,150" Name="windowsFormsHost1" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" Grid.RowSpan="2" />
-        <Slider Height="22" HorizontalAlignment="Left" Margin="130,0,0,11" Name="slider2" VerticalAlignment="Bottom" Width="100" Grid.Row="1" ValueChanged="slider2_ValueChanged" Maximum="100" RenderTransformOrigin="0.5,1.818" />
-        <TextBlock Height="21" Margin="80,0,258,48" Name="textBlock1" VerticalAlignment="Bottom" Grid.Row="1" />
-        <Label Height="28" HorizontalAlignment="Right" Margin="0,0,148,11" Name="label1" VerticalAlignment="Bottom" Width="60" Grid.Row="1">00:00:00</Label>
-        <Label Height="28" HorizontalAlignment="Right" Margin="0,0,126,11" Name="label2" VerticalAlignment="Bottom" Width="34" Grid.Row="1">/</Label>
-        <Label Height="28" HorizontalAlignment="Right" Margin="0,0,81,11" Name="label3" VerticalAlignment="Bottom" Width="62" Grid.Row="1">00:00:00</Label>
+        <Border Grid.Row="1" />
+        <Border Grid.Row="2" />
+        <my:WindowsFormsHost Margin="79,30,81,45" Name="windowsFormsHost1" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" Grid.RowSpan="1" Height="Auto" />
+        <TextBlock Height="21" Name="textBlock1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10"  />
+        <GroupBox Grid.Row="2" Header="Timeline Control" Margin="10" >
+            <Grid VerticalAlignment="Top">
+                <Slider Margin="92,20,81,0" VerticalAlignment="Top" Name="slider1" Maximum="1" Minimum="0" Thumb.DragCompleted="slider1_DragCompleted" Thumb.DragStarted="slider1_DragStarted" Value="{Binding Mode=OneWay, Path=Position}" />
+                <Button Height="23" HorizontalAlignment="Center" Margin="0,70,300,30" Name="button1" VerticalAlignment="Top" Width="50" Click="button1_Click">Open</Button>
+                <Button Height="23" HorizontalAlignment="Center" Margin="300,70,0,30" Name="buttonSnapshot" VerticalAlignment="Top" Width="75" Click="buttonSnapshot_Click_1">Snapshot</Button>
+                <Button Height="23" HorizontalAlignment="Center" Margin="150,70,0,30" Name="button2" VerticalAlignment="Top" Width="54" Click="button2_Click" RenderTransformOrigin="-0.926,0.522">Pause</Button>
+                <Button Height="23" Margin="0,70,0,30" Name="button3" VerticalAlignment="Top" Click="button3_Click" Width="50" RenderTransformOrigin="-0.926,0.522" HorizontalAlignment="Center" >Play</Button>
+                <Button Height="23" Margin="0,70,150,30" Name="button4" VerticalAlignment="Top" Click="button4_Click" HorizontalAlignment="Center" Width="50">Stop</Button>
+                <Button Height="23" HorizontalAlignment="Left" Margin="92,70,148,30" Name="button5" VerticalAlignment="Top" Width="45" Click="button5_Click">Mute</Button>
+                <Slider Height="22" HorizontalAlignment="Left" Margin="150,70,0,30" Name="slider2" VerticalAlignment="Top" Width="100" ValueChanged="slider2_ValueChanged" Maximum="100" RenderTransformOrigin="0.5,1.818" />
+                <Label Height="28" HorizontalAlignment="Right" Margin="0,70,148,30" Name="label1" VerticalAlignment="Top" Width="60">00:00:00</Label>
+                <Label Height="28" HorizontalAlignment="Right" Margin="0,70,126,30" Name="label2" VerticalAlignment="Top" Width="34">/</Label>
+                <Label Height="28" HorizontalAlignment="Right" Margin="0,70,81,30" Name="label3" VerticalAlignment="Top" Width="62">00:00:00</Label>
+            </Grid>
+        </GroupBox>
     </Grid>
 </ad:DockableContent>

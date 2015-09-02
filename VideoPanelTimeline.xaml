@@ -14,7 +14,12 @@
         <Button Height="23" HorizontalAlignment="Center" Margin="0,0,300,80" Name="button1" VerticalAlignment="Bottom" Width="50" Click="button1_Click" Grid.Row="1">Open</Button>
         <Button Height="23" HorizontalAlignment="Center" Margin="300,0,0,80" Name="buttonSnapshot" VerticalAlignment="Bottom" Width="75" Grid.Row="1" Click="buttonSnapshot_Click_1">Snapshot</Button>
         <Button Height="23" HorizontalAlignment="Center" Margin="150,0,0,80" Name="button2" VerticalAlignment="Bottom" Width="54" Click="button2_Click" Grid.Row="1" RenderTransformOrigin="-0.926,0.522">Pause</Button>
-        <Button Height="23" Margin="0,0,0,80" Name="button3" VerticalAlignment="Bottom" Click="button3_Click" Grid.Row="1" Width="50" RenderTransformOrigin="-0.926,0.522" HorizontalAlignment="Center" >Play</Button>
+        <Button Height="75" Margin="0,0,0,80" Name="button3" VerticalAlignment="Bottom" Click="button3_Click" Grid.Row="1" Width="75" RenderTransformOrigin="-0.926,0.522" HorizontalAlignment="Center" >
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Image Source="play121.png" Margin="0,0,10,0" />
+                <TextBlock>Play</TextBlock>
+            </StackPanel>
+        </Button>
         <Button Height="23" Margin="0,0,150,80" Name="button4" VerticalAlignment="Bottom" Click="button4_Click" HorizontalAlignment="Center" Width="50" Grid.Row="1">Stop</Button>
         <Button Height="23" HorizontalAlignment="Left" Margin="80,0,0,10" Name="button5" VerticalAlignment="Bottom" Width="45" Click="button5_Click" Grid.Row="1">Mute</Button>
         <my:WindowsFormsHost Margin="80,30,80,150" Name="windowsFormsHost1" xmlns:my="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" Grid.RowSpan="2" />

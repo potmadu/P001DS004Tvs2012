@@ -41,6 +41,7 @@ namespace Sample3
             dockManager.Content = null;
 
             //TreeView dockable content
+            /*
             var trv = new System.Windows.Controls.TreeView();
             trv.Items.Add(new TreeViewItem() { Header = "Item1" });
             trv.Items.Add(new TreeViewItem() { Header = "Item2" });
@@ -50,7 +51,8 @@ namespace Sample3
             ((TreeViewItem)trv.Items[0]).Items.Add(new TreeViewItem() { Header = "SubItem2" });
             ((TreeViewItem)trv.Items[1]).Items.Add(new TreeViewItem() { Header = "SubItem3" });
             ((TreeViewItem)trv.Items[2]).Items.Add(new TreeViewItem() { Header = "SubItem4" });
-            var treeviewContent = new DockableContent() { Title = "Explorer", Content = trv };
+            var treeviewContent = new DockableContent() { Title = "Explorer", Content = trv 
+             */
 
             //Left TreeView dockable content
             var treeviewContent_left = new DockableContent() { Title = "Explorer Info Left", Content = new System.Windows.Controls.TextBox() { Text = "Explorer Info Text", IsReadOnly = true } };
@@ -60,11 +62,13 @@ namespace Sample3
             //Left TreeView dockable content
             var treeviewContent_right = new DockableContent() { Title = "Explorer Info Right", Content = new System.Windows.Controls.TextBox() { Text = "Explorer Info Text", IsReadOnly = true }, FlyoutWindowSize = new Size(500, 500) };
             treeviewContent_right.Show(dockManager, AnchorStyle.Right);
+            
+            /*
             treeviewContent.Show(dockManager, AnchorStyle.Bottom);
-
             //TextBox invo dockable content
             var treeviewInfoContent = new DockableContent() { Title = "Explorer Info", Content = new System.Windows.Controls.TextBox() { Text = "Explorer Info Text", IsReadOnly = true } };
             treeviewContent.ContainerPane.Items.Add(treeviewInfoContent);
+             */
 
             VideoPanel videoPanel = new VideoPanel();
             videoPanel.ShowAsDocument(dockManager);
