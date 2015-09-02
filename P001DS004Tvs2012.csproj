@@ -55,6 +55,7 @@
     <Reference Include="nVLC.LibVlcWrapper">
       <HintPath>..\Program\P001DS003Tvs2012\Implementation\bin\Debug\nVLC.LibVlcWrapper.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -140,13 +141,13 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="play128.png" />
+    <Resource Include="Icon\play128.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="play129.png" />
+    <Resource Include="Icon\play129.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="play121.png" />
+    <Resource Include="Icon\play121.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
