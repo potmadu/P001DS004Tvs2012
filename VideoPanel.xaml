@@ -14,15 +14,25 @@
         <TextBlock Height="21" Name="textBlock1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10"  />
         <GroupBox Grid.Row="2" Header="Timeline Control" Margin="10" >
             <Grid VerticalAlignment="Top">
-                <Slider Margin="92,20,81,0" VerticalAlignment="Top" Name="slider1" Maximum="1" Minimum="0" Thumb.DragCompleted="slider1_DragCompleted" Thumb.DragStarted="slider1_DragStarted" Value="{Binding Mode=OneWay, Path=Position}" />
-                <Button Height="23" HorizontalAlignment="Center" Margin="0,70,300,30" Name="button1" VerticalAlignment="Top" Width="50" Click="button1_Click">Open</Button>
-                <Button Height="23" HorizontalAlignment="Center" Margin="300,70,0,30" Name="buttonSnapshot" VerticalAlignment="Top" Width="75" Click="buttonSnapshot_Click_1">Snapshot</Button>
-                <Button Height="23" HorizontalAlignment="Center" Margin="150,70,0,30" Name="button2" VerticalAlignment="Top" Width="54" Click="button2_Click" RenderTransformOrigin="-0.926,0.522">Pause</Button>
-                <Button Style="{DynamicResource IconButtonStyle}" Margin="0,70,0,30" Name="button3" VerticalAlignment="Top" Click="button3_Click" HorizontalAlignment="Center" >
-                    <Image Source="/Sample3;component/Icon/play128.png" Width="32" Height="32" />
+                <Slider Style="{StaticResource Horizontal_Slider}" TickFrequency="0.2" Margin="92,20,81,0" VerticalAlignment="Top" Name="slider1" Maximum="1" Minimum="0" Thumb.DragCompleted="slider1_DragCompleted" Thumb.DragStarted="slider1_DragStarted" Value="{Binding Mode=OneWay, Path=Position}" />
+                <Button Style="{DynamicResource IconButtonStyle}" HorizontalAlignment="Center" Margin="0,50,220,30" Name="button1" VerticalAlignment="Top" Click="button1_Click">
+                    <Image Source="/Sample3;component/Icon/Open Folder-50.png" Width="45" Height="45" />
                 </Button>
-                <Button Height="23" Margin="0,70,150,30" Name="button4" VerticalAlignment="Top" Click="button4_Click" HorizontalAlignment="Center" Width="50">Stop</Button>
-                <Button Height="23" HorizontalAlignment="Left" Margin="92,70,148,30" Name="button5" VerticalAlignment="Top" Width="45" Click="button5_Click">Mute</Button>
+                <Button Style="{DynamicResource IconButtonStyle}" HorizontalAlignment="Center" Margin="300,50,70,30" Name="buttonSnapshot" VerticalAlignment="Top" Click="buttonSnapshot_Click_1">
+                    <Image Source="/Sample3;component/Icon/Camera-50.png" Width="45" Height="45" />
+                </Button>
+                <Button Style="{DynamicResource IconButtonStyle}" HorizontalAlignment="Center" Margin="0,50,0,30" Name="button2" VerticalAlignment="Top" Click="button2_Click">
+                    <Image Source="/Sample3;component/Icon/pause-50.png" Width="45" Height="45" />
+                </Button>
+                <Button Style="{DynamicResource IconButtonStyle}" Margin="0,50,110,30" Name="button3" VerticalAlignment="Top" Click="button3_Click" HorizontalAlignment="Center" >
+                    <Image Source="/Sample3;component/Icon/play-50.png" Width="45" Height="45" />
+                </Button>
+                <Button Style="{DynamicResource IconButtonStyle}" Margin="110,50,0,30" Name="button4" VerticalAlignment="Top" Click="button4_Click" HorizontalAlignment="Center" >
+                    <Image Source="/Sample3;component/Icon/Stop-50.png" Width="45" Height="45" />
+                </Button>
+                <Button Style="{DynamicResource IconButtonStyle}" HorizontalAlignment="Left" Margin="92,50,148,30" Name="button5" VerticalAlignment="Top" Click="button5_Click">
+                    <Image Source="/Sample3;component/Icon/Volume Up-50.png" Width="45" Height="45" />
+                </Button>
                 <Slider Height="22" HorizontalAlignment="Left" Margin="150,70,0,30" Name="slider2" VerticalAlignment="Top" Width="100" ValueChanged="slider2_ValueChanged" Maximum="100" RenderTransformOrigin="0.5,1.818" />
                 <Label Height="28" HorizontalAlignment="Right" Margin="0,70,148,30" Name="label1" VerticalAlignment="Top" Width="60">00:00:00</Label>
                 <Label Height="28" HorizontalAlignment="Right" Margin="0,70,126,30" Name="label2" VerticalAlignment="Top" Width="34">/</Label>

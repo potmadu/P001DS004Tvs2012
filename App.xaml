@@ -4,199 +4,302 @@
              xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!-- The IconButtonStyle -->
-        <Style x:Key="IconButtonStyle"
-               TargetType="{x:Type Button}">
-            <!-- set some default values -->
-            <Setter Property="Background"
-                    Value="Transparent" />
-            <Setter Property="BorderBrush"
-                    Value="Transparent" />
-            <!-- set the visual tree of the control -->
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <!-- here come the actual sub-controls -->
-                        <Border x:Name="border"
-                                Height="{TemplateBinding Height}"
-                                Width="{TemplateBinding Width}"
-                                SnapsToDevicePixels="True"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1"
-                                Padding="0"
-                                CornerRadius="3,3,3,3">
-                            <Border x:Name="innerBorder"
+        <ResourceDictionary>
+            <!-- The IconButtonStyle -->
+            <Style x:Key="IconButtonStyle"
+                   TargetType="{x:Type Button}">
+                <!-- set some default values -->
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="BorderBrush"
+                        Value="Transparent" />
+                <!-- set the visual tree of the control -->
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <!-- here come the actual sub-controls -->
+                            <Border x:Name="border"
+                                    Height="{TemplateBinding Height}"
+                                    Width="{TemplateBinding Width}"
                                     SnapsToDevicePixels="True"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="1"
-                                    Padding="2"
+                                    Padding="0"
                                     CornerRadius="3,3,3,3">
+                                <Border x:Name="innerBorder"
+                                        SnapsToDevicePixels="True"
+                                        BorderThickness="1"
+                                        Padding="2"
+                                        CornerRadius="3,3,3,3">
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      Margin="{TemplateBinding Padding}">
+                                        <ContentPresenter.Effect>
+                                            <!-- give the content a bit of shadow -->
+                                            <DropShadowEffect x:Name="shadow"
+                                                              ShadowDepth="2"
+                                                              Opacity="0.7"
+                                                              BlurRadius="3" />
+                                        </ContentPresenter.Effect>
+                                        <ContentPresenter.RenderTransform>
+                                            <!-- push the content a bit to the left and the top -->
+                                            <TranslateTransform x:Name="translation"
+                                                                X="-1"
+                                                                Y="-1" />
+                                        </ContentPresenter.RenderTransform>
+                                    </ContentPresenter>
+                                </Border>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <!-- 
+                                    the triggers define the reactions to various state
+                                    changes
+                                -->
+                                <Trigger Property="IsMouseOver"
+                                         Value="true">
+                                    <Setter Property="Background"
+                                            Value="LightBlue" />
+                                </Trigger>
+                                <!-- when the control is disabled, just let the background shine through -->
+                                <Trigger Property="IsEnabled"
+                                         Value="false">
+                                    <Setter Property="Opacity"
+                                            Value="0.5" />
+                                </Trigger>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <!-- This Trigger manages the Animation of the button's content and its shadow -->
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0"
+                                                                 To="0"
+                                                                 Storyboard.TargetName="shadow"
+                                                                 Storyboard.TargetProperty="(DropShadowEffect.ShadowDepth)" />
+                                                <DoubleAnimation Duration="0:0:0"
+                                                                 To="0"
+                                                                 Storyboard.TargetName="translation"
+                                                                 Storyboard.TargetProperty="(TranslateTransform.X)" />
+                                                <DoubleAnimation Duration="0:0:0"
+                                                                 To="0"
+                                                                 Storyboard.TargetName="translation"
+                                                                 Storyboard.TargetProperty="(TranslateTransform.Y)" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0"
+                                                                 To="1"
+                                                                 Storyboard.TargetName="shadow"
+                                                                 Storyboard.TargetProperty="(DropShadowEffect.ShadowDepth)" />
+                                                <DoubleAnimation Duration="0:0:0"
+                                                                 To="-1"
+                                                                 Storyboard.TargetName="translation"
+                                                                 Storyboard.TargetProperty="(TranslateTransform.X)" />
+                                                <DoubleAnimation Duration="0:0:0"
+                                                                 To="-1"
+                                                                 Storyboard.TargetName="translation"
+                                                                 Storyboard.TargetProperty="(TranslateTransform.Y)" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- This is what Expression Blend creates as default Template -->
+            <Style x:Key="ButtonFocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle SnapsToDevicePixels="true"
+                                       Margin="2"
+                                       Stroke="Black"
+                                       StrokeDashArray="1 2"
+                                       StrokeThickness="1" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <LinearGradientBrush x:Key="ButtonNormalBackground"
+                                 EndPoint="0,1"
+                                 StartPoint="0,0">
+                <GradientStop Color="#F3F3F3"
+                              Offset="0" />
+                <GradientStop Color="#EBEBEB"
+                              Offset="0.5" />
+                <GradientStop Color="#DDDDDD"
+                              Offset="0.5" />
+                <GradientStop Color="#CDCDCD"
+                              Offset="1" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="ButtonNormalBorder"
+                             Color="#FF707070" />
+            <Style x:Key="DefaultButtonStyle"
+                   TargetType="{x:Type Button}">
+                <Setter Property="FocusVisualStyle"
+                        Value="{StaticResource ButtonFocusVisual}" />
+                <Setter Property="Background"
+                        Value="{StaticResource ButtonNormalBackground}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource ButtonNormalBorder}" />
+                <Setter Property="BorderThickness"
+                        Value="1" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Center" />
+                <Setter Property="Padding"
+                        Value="1" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Microsoft_Windows_Themes:ButtonChrome SnapsToDevicePixels="true"
+                                                                   x:Name="Chrome"
+                                                                   Background="{TemplateBinding Background}"
+                                                                   BorderBrush="{TemplateBinding BorderBrush}"
+                                                                   RenderDefaulted="{TemplateBinding IsDefaulted}"
+                                                                   RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                                                   RenderPressed="{TemplateBinding IsPressed}">
                                 <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}"
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  RecognizesAccessKey="True"
-                                                  Margin="{TemplateBinding Padding}">
-                                    <ContentPresenter.Effect>
-                                        <!-- give the content a bit of shadow -->
-                                        <DropShadowEffect x:Name="shadow"
-                                                          ShadowDepth="2"
-                                                          Opacity="0.7"
-                                                          BlurRadius="3" />
-                                    </ContentPresenter.Effect>
-                                    <ContentPresenter.RenderTransform>
-                                        <!-- push the content a bit to the left and the top -->
-                                        <TranslateTransform x:Name="translation"
-                                                            X="-1"
-                                                            Y="-1" />
-                                    </ContentPresenter.RenderTransform>
-                                </ContentPresenter>
-                            </Border>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <!-- 
-                                the triggers define the reactions to various state
-                                changes
-                            -->
-                            <Trigger Property="IsMouseOver"
-                                     Value="true">
-                                <Setter Property="Background"
-                                        Value="LightBlue" />
-                            </Trigger>
-                            <!-- when the control is disabled, just let the background shine through -->
-                            <Trigger Property="IsEnabled"
-                                     Value="false">
-                                <Setter Property="Opacity"
-                                        Value="0.5" />
-                            </Trigger>
-                            <Trigger Property="IsPressed"
-                                     Value="True">
-                                <!-- This Trigger manages the Animation of the button's content and its shadow -->
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0"
-                                                             To="0"
-                                                             Storyboard.TargetName="shadow"
-                                                             Storyboard.TargetProperty="(DropShadowEffect.ShadowDepth)" />
-                                            <DoubleAnimation Duration="0:0:0"
-                                                             To="0"
-                                                             Storyboard.TargetName="translation"
-                                                             Storyboard.TargetProperty="(TranslateTransform.X)" />
-                                            <DoubleAnimation Duration="0:0:0"
-                                                             To="0"
-                                                             Storyboard.TargetName="translation"
-                                                             Storyboard.TargetProperty="(TranslateTransform.Y)" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.EnterActions>
-                                <Trigger.ExitActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0"
-                                                             To="1"
-                                                             Storyboard.TargetName="shadow"
-                                                             Storyboard.TargetProperty="(DropShadowEffect.ShadowDepth)" />
-                                            <DoubleAnimation Duration="0:0:0"
-                                                             To="-1"
-                                                             Storyboard.TargetName="translation"
-                                                             Storyboard.TargetProperty="(TranslateTransform.X)" />
-                                            <DoubleAnimation Duration="0:0:0"
-                                                             To="-1"
-                                                             Storyboard.TargetName="translation"
-                                                             Storyboard.TargetProperty="(TranslateTransform.Y)" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.ExitActions>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!-- This is what Expression Blend creates as default Template -->
-        <Style x:Key="ButtonFocusVisual">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle SnapsToDevicePixels="true"
-                                   Margin="2"
-                                   Stroke="Black"
-                                   StrokeDashArray="1 2"
-                                   StrokeThickness="1" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <LinearGradientBrush x:Key="ButtonNormalBackground"
-                             EndPoint="0,1"
-                             StartPoint="0,0">
-            <GradientStop Color="#F3F3F3"
-                          Offset="0" />
-            <GradientStop Color="#EBEBEB"
-                          Offset="0.5" />
-            <GradientStop Color="#DDDDDD"
-                          Offset="0.5" />
-            <GradientStop Color="#CDCDCD"
-                          Offset="1" />
-        </LinearGradientBrush>
-        <SolidColorBrush x:Key="ButtonNormalBorder"
-                         Color="#FF707070" />
-        <Style x:Key="DefaultButtonStyle"
-               TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle"
-                    Value="{StaticResource ButtonFocusVisual}" />
-            <Setter Property="Background"
-                    Value="{StaticResource ButtonNormalBackground}" />
-            <Setter Property="BorderBrush"
-                    Value="{StaticResource ButtonNormalBorder}" />
-            <Setter Property="BorderThickness"
-                    Value="1" />
-            <Setter Property="Foreground"
-                    Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-            <Setter Property="HorizontalContentAlignment"
-                    Value="Center" />
-            <Setter Property="VerticalContentAlignment"
-                    Value="Center" />
-            <Setter Property="Padding"
-                    Value="1" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Microsoft_Windows_Themes:ButtonChrome SnapsToDevicePixels="true"
-                                                               x:Name="Chrome"
-                                                               Background="{TemplateBinding Background}"
-                                                               BorderBrush="{TemplateBinding BorderBrush}"
-                                                               RenderDefaulted="{TemplateBinding IsDefaulted}"
-                                                               RenderMouseOver="{TemplateBinding IsMouseOver}"
-                                                               RenderPressed="{TemplateBinding IsPressed}">
-                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              Margin="{TemplateBinding Padding}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              RecognizesAccessKey="True" />
-                        </Microsoft_Windows_Themes:ButtonChrome>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsKeyboardFocused"
-                                     Value="true">
-                                <Setter Property="RenderDefaulted"
-                                        TargetName="Chrome"
-                                        Value="true" />
-                            </Trigger>
-                            <Trigger Property="ToggleButton.IsChecked"
-                                     Value="true">
-                                <Setter Property="RenderPressed"
-                                        TargetName="Chrome"
-                                        Value="true" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled"
-                                     Value="false">
-                                <Setter Property="Foreground"
-                                        Value="#ADADAD" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                                                  RecognizesAccessKey="True" />
+                            </Microsoft_Windows_Themes:ButtonChrome>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsKeyboardFocused"
+                                         Value="true">
+                                    <Setter Property="RenderDefaulted"
+                                            TargetName="Chrome"
+                                            Value="true" />
+                                </Trigger>
+                                <Trigger Property="ToggleButton.IsChecked"
+                                         Value="true">
+                                    <Setter Property="RenderPressed"
+                                            TargetName="Chrome"
+                                            Value="true" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="false">
+                                    <Setter Property="Foreground"
+                                            Value="#ADADAD" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <!-- Start Slider Style-->
+
+            <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="IsTabStop" Value="false" />
+                <Setter Property="Focusable" Value="false" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RepeatButton">
+                            <Border Background="Transparent"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="SliderRepeatButton1" TargetType="RepeatButton">
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RepeatButton">
+                            <Border SnapsToDevicePixels="True" Background="YellowGreen"  BorderThickness="1" BorderBrush="YellowGreen" Height="10"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="SliderThumb" TargetType="Thumb">
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Thumb">
+                            <StackPanel Orientation="Vertical">
+                                <Path Data="M 0 0 L 8 0 L 4 6 Z"  Stroke="YellowGreen" Margin="-2,0,0,0" StrokeThickness="2" Fill="YellowGreen"></Path>
+                                <Line X1="0" Y1="0" X2="0" Y2="7" Stroke="Gray" StrokeThickness="1" Margin="2,0,0,0" StrokeDashArray="1.5,1.5"></Line>
+                                <TextBlock Foreground="Black" Margin="-2,30,0,0"  Text="{Binding Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}}"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <ControlTemplate x:Key="Slider"  TargetType="Slider">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TickBar  x:Name="TopTick"  Fill="LightGray" VerticalAlignment="Top"   SnapsToDevicePixels="True" Grid.Row="0" Placement="Top" Height="5" Visibility="Visible"/>
+                    <Border BorderBrush="LightGray"  BorderThickness="0,0,0,1" ></Border>
+                    <Border x:Name="TrackBackground" VerticalAlignment="Center" Margin="0,-10,0,0" BorderBrush="Red" Background="Red" Height="10"   Grid.Row="1"  BorderThickness="1"/>
+                    <Track Grid.Row="1" x:Name="PART_Track" Margin="0,-10,0,0"  >
+                        <Track.DecreaseRepeatButton>
+                            <RepeatButton Style="{StaticResource SliderRepeatButton1}"  Command="Slider.DecreaseLarge" />
+                        </Track.DecreaseRepeatButton>
+                        <Track.Thumb>
+                            <Thumb Style="{StaticResource SliderThumb}" Margin="0,-20,0,0" />
+                        </Track.Thumb>
+                        <Track.IncreaseRepeatButton>
+                            <RepeatButton Style="{StaticResource SliderRepeatButton}" Command="Slider.IncreaseLarge" />
+                        </Track.IncreaseRepeatButton>
+                    </Track>
+                    <TextBlock Text="0" Grid.Row="1" Margin="0,15,0,0"></TextBlock>
+                    <TickBar x:Name="BottomTick" Fill="LightGray"   SnapsToDevicePixels="True" Grid.Row="2"   Placement="Bottom" Height="4" Visibility="Collapsed" />
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="TickPlacement"  Value="TopLeft">
+                        <Setter TargetName="TopTick" Property="Visibility"  Value="Visible" />
+                    </Trigger>
+                    <Trigger Property="TickPlacement" Value="BottomRight">
+                        <Setter TargetName="BottomTick"  Property="Visibility"  Value="Visible" />
+                    </Trigger>
+                    <Trigger Property="TickPlacement" Value="Both">
+                        <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+                        <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <Style x:Key="Horizontal_Slider" TargetType="Slider">
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Style.Triggers>
+                    <Trigger Property="Orientation" Value="Horizontal">
+                        <Setter Property="MinHeight" Value="21" />
+                        <Setter Property="MinWidth" Value="104" />
+                        <Setter Property="Template" Value="{StaticResource Slider}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- End Slider Style -->
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AvalonDock.Themes;component/themes/dev2010.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

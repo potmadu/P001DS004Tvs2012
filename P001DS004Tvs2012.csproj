@@ -141,13 +141,33 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\play128.png" />
+    <Resource Include="Icon\back.png" />
+    <Resource Include="Icon\next.png" />
+    <Resource Include="Icon\pause.png" />
+    <Resource Include="Icon\play.png" />
+    <Resource Include="Icon\reload.png" />
+    <Resource Include="Icon\speaker.png" />
+    <Resource Include="Icon\stop.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\play129.png" />
+    <Resource Include="Icon\CompactCamera-50.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\play121.png" />
+    <Resource Include="Icon\Open Folder Filled-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Pause-50.png" />
+    <Resource Include="Icon\Play-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Stop-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Camera-50.png" />
+    <Resource Include="Icon\Volume Up-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Open Folder-50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

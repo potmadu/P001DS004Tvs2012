@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Sample3")]
-[assembly: AssemblyCopyright("Copyright © Adolfo Marinucci 2010")]
+[assembly: AssemblyCopyright("Copyright © UA Solution 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
