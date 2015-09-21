@@ -176,7 +176,18 @@ namespace Sample3
             m_player.TakeSnapShot(0, @"c:\temp\");
         }
 
+        public void play_video_from_database(string filename) {
 
+            m_media = m_factory.CreateMedia<IMediaFromFile>(filename);
+            m_media.Events.DurationChanged += new EventHandler<MediaDurationChange>(Events_DurationChanged);
+            m_media.Events.StateChanged += new EventHandler<MediaStateChange>(Events_StateChanged);
+
+            m_player.Open(m_media);
+            m_media.Parse(true);
+
+            m_player.Play();
+
+        }
 
     }
 }

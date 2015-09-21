@@ -28,53 +28,39 @@ namespace Sample3
     /// </summary>
     public partial class MainWindow : Window
     {
+        DBController dbController;
+        System.Windows.Controls.TreeView trv;
+        VideoPanel videoPanel;
+
         public MainWindow()
         {
             InitializeComponent();
+            dbController = new DBController();
+            videoPanel = new VideoPanel();
             BuildDockingLayout();
             this.WindowState = System.Windows.WindowState.Maximized;
-            System.Windows.Application.Current.Resources["ThemeDictionary"] = new ResourceDictionary();            
+            System.Windows.Application.Current.Resources["ThemeDictionary"] = new ResourceDictionary();
         }
 
         void BuildDockingLayout()
         {
             dockManager.Content = null;
 
-            //TreeView dockable content
-            /*
-            var trv = new System.Windows.Controls.TreeView();
-            trv.Items.Add(new TreeViewItem() { Header = "Item1" });
-            trv.Items.Add(new TreeViewItem() { Header = "Item2" });
-            trv.Items.Add(new TreeViewItem() { Header = "Item3" });
-            trv.Items.Add(new TreeViewItem() { Header = "Item4" });
-            ((TreeViewItem)trv.Items[0]).Items.Add(new TreeViewItem() { Header = "SubItem1" });
-            ((TreeViewItem)trv.Items[0]).Items.Add(new TreeViewItem() { Header = "SubItem2" });
-            ((TreeViewItem)trv.Items[1]).Items.Add(new TreeViewItem() { Header = "SubItem3" });
-            ((TreeViewItem)trv.Items[2]).Items.Add(new TreeViewItem() { Header = "SubItem4" });
-            var treeviewContent = new DockableContent() { Title = "Explorer", Content = trv 
-             */
+            trv = new System.Windows.Controls.TreeView();
+            trv.Items.Add(new TreeViewItem() { Header = "Recorded Video" });
+            foreach(var video in dbController.list_video()){
+                ((TreeViewItem)trv.Items[0]).Items.Add(new TreeViewItem() { Header = video });
+            }
+            trv.MouseDoubleClick += trv_NodeMouseDoubleClick;
 
-            //Left TreeView dockable content
-            var treeviewContent_left = new DockableContent() { Title = "Explorer Info Left", Content = new System.Windows.Controls.TextBox() { Text = "Explorer Info Text", IsReadOnly = true } };
+            var treeviewContent_right = new DockableContent() { Title = "Video Lists", Content = trv };
+            treeviewContent_right.Show(dockManager, AnchorStyle.Right);
+           
+            var treeviewContent_left = new DockableContent() { Title = "Device Lists", Content = new System.Windows.Controls.TextBox() { Text = "Device Lists", IsReadOnly = true } };
             treeviewContent_left.Show(dockManager, AnchorStyle.Left);
             treeviewContent_left.ToggleAutoHide();
 
-            //Left TreeView dockable content
-            var treeviewContent_right = new DockableContent() { Title = "Explorer Info Right", Content = new System.Windows.Controls.TextBox() { Text = "Explorer Info Text", IsReadOnly = true }, FlyoutWindowSize = new Size(500, 500) };
-            treeviewContent_right.Show(dockManager, AnchorStyle.Right);
-            
-            /*
-            treeviewContent.Show(dockManager, AnchorStyle.Bottom);
-            //TextBox invo dockable content
-            var treeviewInfoContent = new DockableContent() { Title = "Explorer Info", Content = new System.Windows.Controls.TextBox() { Text = "Explorer Info Text", IsReadOnly = true } };
-            treeviewContent.ContainerPane.Items.Add(treeviewInfoContent);
-             */
-
-            VideoPanel videoPanel = new VideoPanel();
             videoPanel.ShowAsDocument(dockManager);
-
-            VideoPanelTimeline videoPanelTimeline = new VideoPanelTimeline();
-            videoPanelTimeline.ShowAsDocument(dockManager);
 
         }
 
@@ -100,6 +86,35 @@ namespace Sample3
             ThemeFactory.ChangeColors((Color)ColorConverter.ConvertFromString(((System.Windows.Controls.MenuItem)sender).Header.ToString()));
         }
 
-        
+        private void trv_NodeMouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            string title="";
+
+            try
+            {
+
+                System.Windows.Controls.TreeView _trv = sender as System.Windows.Controls.TreeView;
+
+                if (_trv.SelectedItem is TreeViewItem)
+                {
+                    var item = _trv.SelectedItem as TreeViewItem;
+                    title = item.Header.ToString();
+                }
+                else if (_trv.SelectedItem is string)
+                {
+                    title = _trv.SelectedItem.ToString();
+                }
+
+                System.Windows.Forms.MessageBox.Show("Playing "+title);
+                string filename = dbController.retrieve_video(title);
+                videoPanel.play_video_from_database(filename);
+
+            }
+            catch (Exception ef)
+            {
+                System.Windows.Forms.MessageBox.Show("Error.");
+            }
+        }
+
     }
 }
