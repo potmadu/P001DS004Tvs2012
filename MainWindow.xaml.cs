@@ -47,7 +47,8 @@ namespace Sample3
             dockManager.Content = null;
 
             trv = new System.Windows.Controls.TreeView();
-            trv.Items.Add(new TreeViewItem() { Header = "Recorded Video" });
+            TreeViewItem tvitem = GetTreeView("recorded_vid", "Recorded Video", @"C:\Users\UA\Documents\Project\Displayer\P001DS004Tvs2012\Icon\Video Call-50.png");
+            trv.Items.Add(tvitem);
             foreach(var video in dbController.list_video()){
                 ((TreeViewItem)trv.Items[0]).Items.Add(new TreeViewItem() { Header = video });
             }
@@ -114,6 +115,36 @@ namespace Sample3
             {
                 System.Windows.Forms.MessageBox.Show("Error.");
             }
+        }
+
+        private TreeViewItem GetTreeView(string uid, string text, string imagePath)
+        {
+            TreeViewItem item = new TreeViewItem();
+            item.Uid = uid;
+            item.IsExpanded = false;
+
+            // create stack panel
+            StackPanel stack = new StackPanel();
+            stack.Orientation = System.Windows.Controls.Orientation.Horizontal;
+
+            // create Image
+            Image image = new Image();
+            image.Source = new BitmapImage
+                (new Uri(imagePath));
+            image.Width = 16;
+            image.Height = 16;
+            // Label
+            System.Windows.Controls.Label lbl = new System.Windows.Controls.Label();
+            lbl.Content = text;
+
+
+            // Add into stack
+            stack.Children.Add(image);
+            stack.Children.Add(lbl);
+
+            // assign stack to header
+            item.Header = stack;
+            return item;
         }
 
     }
