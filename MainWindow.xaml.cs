@@ -60,7 +60,7 @@ namespace Sample3
             var treeviewContent_left = new DockableContent() { Title = "Device Lists", Content = new System.Windows.Controls.TextBox() { Text = "Device Lists", IsReadOnly = true } };
             treeviewContent_left.Show(dockManager, AnchorStyle.Left);
             treeviewContent_left.ToggleAutoHide();
-
+            
             videoPanel.ShowAsDocument(dockManager);
 
         }
@@ -109,7 +109,7 @@ namespace Sample3
                 System.Windows.Forms.MessageBox.Show("Playing "+title);
                 string filename = dbController.retrieve_video(title);
                 videoPanel.play_video_from_database(filename);
-
+                
             }
             catch (Exception ef)
             {

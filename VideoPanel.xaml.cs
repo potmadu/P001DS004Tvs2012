@@ -117,6 +117,10 @@ namespace Sample3
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
+            //streaming
+            IMedia media = m_factory.CreateMedia<IMedia>(@"rtsp://admin:admin@121.159.26.243:554/video1+audio1;Username=admin;Password=admin;Transport=UDP;");
+            m_player.Open(media);
+            media.Parse(true);
             m_player.Play();
         }
 
